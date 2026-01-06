@@ -1,0 +1,57 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Research Proxy",
+    "description": "Proxy to route requests to SDSU, Adobe, SciSpace, etc.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://gpt-make-proxy.vercel.app"
+    }
+  ],
+  "paths": {
+    "/api/send": {
+      "post": {
+        "description": "Send a search query to a specific tool.",
+        "operationId": "sendRequest",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tool": {
+                    "type": "string",
+                    "description": "The tool to use.",
+                    "enum": ["sdsu.edu", "express.adobe.io", "scispace.com", "api.scholarai.io", "chat.consensus.app", "sider.ai"]
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "The search query."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
