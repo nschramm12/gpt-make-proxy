@@ -2,6 +2,10 @@
   "version": 2,
   "routes": [
     {
+      "src": "/openapi.json",
+      "dest": "/openapi.json"
+    },
+    {
       "src": "/api/send",
       "dest": "/api/send.js"
     }
